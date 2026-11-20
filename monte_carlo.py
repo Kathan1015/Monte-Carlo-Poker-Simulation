@@ -52,13 +52,12 @@ def monte_carlo(num_times = 100000, seed = 15):
     print(diff)
 
     boolean = (diff == 0).all(axis = 1)
-
-    print(boolean)
+    
     print(boolean.shape)
 
     print(actual_suit[boolean])
 
-    print(np.mean(boolean))
+    print(f"Manual Probability of Suit: np.mean(boolean)")
 
     # now getting probability of ranks
 
@@ -66,9 +65,7 @@ def monte_carlo(num_times = 100000, seed = 15):
 
     difference = (sort[:, 0] == sort[:, 3]) | (sort[:, 1] == sort[:, 4])
 
-    print(difference)
-
-    print(np.mean(difference))
+    print(f"Manual Probability of Rank: np.mean(difference)")
 
     print(actual_rank[difference])
 
