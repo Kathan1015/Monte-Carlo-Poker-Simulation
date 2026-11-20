@@ -43,21 +43,21 @@ def monte_carlo(num_times = 100000, seed = 15):
 
     math_flush = (4 * math.comb(13, 5)) / math.comb(52, 5)
 
-    print(math_flush)
+    print(f"Mathematical Flush: {math_flush}")
 
     # now doing with our suit matrix
 
     diff = np.diff(actual_suit)
 
-    print(diff)
+    # print(diff)
 
     boolean = (diff == 0).all(axis = 1)
     
     print(boolean.shape)
 
-    print(actual_suit[boolean])
+    # print(actual_suit[boolean])
 
-    print(f"Manual Probability of Suit: np.mean(boolean)")
+    print(f"Manual Probability of Suit: {np.mean(boolean)}")
 
     # now getting probability of ranks
 
@@ -65,15 +65,15 @@ def monte_carlo(num_times = 100000, seed = 15):
 
     difference = (sort[:, 0] == sort[:, 3]) | (sort[:, 1] == sort[:, 4])
 
-    print(f"Manual Probability of Rank: np.mean(difference)")
+    print(f"Manual Probability of Rank: {np.mean(difference)}")
 
-    print(actual_rank[difference])
+    # print(actual_rank[difference])
 
     # mathematical rank
 
     math_four_of_a_kind = (13 * 48) / math.comb(52, 5)
 
-    print(math_four_of_a_kind)
+    print(f"Mathematical Four of a Kind: {math_four_of_a_kind}")
 
 if __name__ == "__main__":
     monte_carlo()
