@@ -21,7 +21,7 @@ $$
 - Used `np.diff()` on `actual_suit` to get to know which row's elements are subtracted to 0.
 - Used `np.sort()` on `actual_rank` and did `sort[:, 0] == sort[:, 3]) | (sort[:, 1] == sort[:, 4]` to find out if 1st and 4th and 2nd and 5th element indicating the row has four same rank
 
-# Simple Things Learn From The Code
+# Simple Things To Learn From The Code
 1. Boolean Masking - `(diff == 0).all(axis = 1)` on `diff` matrix and `(sort[:, 0] == sort[:, 3]) | (sort[:, 1] == sort[:, 4])` on `sort` matrix
 2. `actual_suit` is floor division (`//`) of `shuffled_matrix` and `actual_rank` is modulo (`%`) of `shuffled_matrix`
 
