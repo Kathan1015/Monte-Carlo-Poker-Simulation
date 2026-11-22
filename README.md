@@ -15,11 +15,11 @@ P(\text{Four of a Kind}) = \frac{13 \times 48}{\binom{52}{5}} \approx 0.000240
 $$
 
 # How Code Works
-- Used `np.broadcast_to()` to stretch the `deck` matrix to 100,000 and created a `grand_matrix`.
-- Shuffled the rows (axis = 1) of `grand_matrix` using `rng.permuted(grand_matrix, axis = 1)`.
-- Now suffled `grand_matrix` and extracted (100000, 5) matrix from the `grand_matrix` and create `shuffled_matrix`.
-- Used `np.diff()` on `actual_suit` to get to know which row's elements are subtracted to 0.
-- Used `np.sort()` on `actual_rank` and did `sort[:, 0] == sort[:, 3]) | (sort[:, 1] == sort[:, 4]` to find out if 1st and 4th and 2nd and 5th element indicating the row has four same rank
+- Use `np.broadcast_to()` to stretch the `deck` matrix to 100,000 and creat a `grand_matrix`.
+- Shuffle the rows (axis = 1) of `grand_matrix` using `rng.permuted(grand_matrix, axis = 1)`.
+- Extract (100000, 5) matrix from the `grand_matrix` and create `shuffled_matrix`.
+- Use `np.diff()` on `actual_suit` to get to know which row's elements are subtracted to 0.
+- Use `np.sort()` on `actual_rank` and do `sort[:, 0] == sort[:, 3]) | (sort[:, 1] == sort[:, 4]` to find out if 1st and 4th and 2nd and 5th element indicating the row has four same rank
 
 # Simple Things To Learn From The Code
 1. Boolean Masking - `(diff == 0).all(axis = 1)` on `diff` matrix and `(sort[:, 0] == sort[:, 3]) | (sort[:, 1] == sort[:, 4])` on `sort` matrix
