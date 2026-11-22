@@ -16,14 +16,14 @@ $$
 
 # How Code Works
 - Use `np.broadcast_to()` to stretch the `deck` matrix to 100,000 and create a `grand_matrix`.
-- Shuffle the rows (axis = 1) of `grand_matrix` using `rng.permuted(grand_matrix, axis = 1)`.
-- Extract (100000, 5) matrix from the `grand_matrix` and create `shuffled_matrix`.
+- Shuffle the rows (axis = 1) of `grand_matrix` using `rng.permuted(grand_matrix, axis = 1)` and create `shuffle_matrix`.
+- Now extract (100000, 5) from `shuffle_matrix` matrix and create `suit` matrix by floor division (`//`) and create `rank` matrix by modulo (`%`).
 - Use `np.diff()` on `suit` to get to know which row's elements are subtracted to 0 (for all elements).
-- Use `np.sort()` on `rank` and do `sort[:, 0] == sort[:, 3]) | (sort[:, 1] == sort[:, 4]` to find out if 1st and 4th and 2nd and 5th element indicating the row has four same rank
+- Use `np.sort()` on `rank` and do `sort[:, 0] == sort[:, 3]) | (sort[:, 1] == sort[:, 4]` to find out if 1st and 4th and 2nd and 5th element indicating the row has four same rank.
 
 # Simple Things To Learn From The Code
 1. Boolean Masking: `(diff == 0).all(axis = 1)` on `diff` matrix and `(sort[:, 0] == sort[:, 3]) | (sort[:, 1] == sort[:, 4])` on `sort` matrix
-2. `suit` is floor division (`//`) of `shuffled_matrix` and `rank` is modulo (`%`) of `shuffled_matrix`
+2. `suit` is floor division (`//`) of `shuffle_matrix` and `rank` is modulo (`%`) of `shuffle_matrix`
 
 # Results
 
