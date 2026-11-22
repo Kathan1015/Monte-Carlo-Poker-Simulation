@@ -8,10 +8,6 @@ def monte_carlo(num_times = 100000, seed = 15):
     
     deck = np.arange(0, 52, 1)
 
-    suit = deck // 13
-
-    rank = deck % 13
-
     # Step 1: Creating a (100000, 52) and shuffling it
 
     grand_matrix = np.broadcast_to(deck, (num_times, 52))
@@ -26,7 +22,7 @@ def monte_carlo(num_times = 100000, seed = 15):
 
     actual_suit = actual_suit // 13
 
-    print(f"Actual Suit Shape: {actual_suit.shape}")
+    print(f"Same Suit Shape: {actual_suit.shape}")
 
     # now getting dealt hand matrix
     dealt_hand = shuffled_matrix[:, 0:5]
@@ -53,7 +49,7 @@ def monte_carlo(num_times = 100000, seed = 15):
 
     boolean = (diff == 0).all(axis = 1)
     
-    print(boolean.shape)
+    # print(boolean.shape)
 
     # print(actual_suit[boolean])
 
