@@ -10,11 +10,11 @@ def monte_carlo(num_times = 100000, seed = 25):
 
     #print(deck)
 
-    grand_matrix = np.broadcast_to(deck, (100000, 52))
+    grand_matrix = np.broadcast_to(deck, (num_times, 52))
 
     #print(grand_matrix.shape)
 
-    hat = np.random.default_rng(seed = 25)
+    hat = np.random.default_rng(seed = seed)
 
     shuffle_matrix = hat.permuted(grand_matrix, axis = 1)  # NOTE: DO NOT FORGOT TO USE axis = 1
 
