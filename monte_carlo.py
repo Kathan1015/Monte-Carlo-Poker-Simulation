@@ -4,72 +4,74 @@ import math
 
 # MONTE CARLO SIMULATION
 
-def monte_carlo(num_times = 100000, seed = 15):
-    
+def monte_carlo(num_times = 100000, seed = 25):
+
     deck = np.arange(0, 52, 1)
 
-    # Step 1: Creating a (100000, 52) and shuffling it
+    #print(deck)
 
-    grand_matrix = np.broadcast_to(deck, (num_times, 52))
+    grand_matrix = np.broadcast_to(deck, (100000, 52))
 
-    hat =  np.random.default_rng(seed = seed)
+    #print(grand_matrix.shape)
 
-    shuffled_matrix = hat.permuted(grand_matrix, axis = 1)
+    hat = np.random.default_rng(seed = 25)
 
-    # now we are getting our actual same suit matrix
+    shuffle_matrix = hat.permuted(grand_matrix, axis = 1)  # NOTE: DO NOT FORGOT TO USE axis = 1
 
-    actual_suit = shuffled_matrix[:, 0:5]
+    #print(shuffle_matrix)
+    #print(shuffle_matrix.shape)
 
-    actual_suit = actual_suit // 13
+    suit = shuffle_matrix[:, 0:5] // 13
 
-    print(f"Same Suit Shape: {actual_suit.shape}")
+    #print(suit)
+    #print(suit.shape)
 
-    # now getting dealt hand matrix
-    dealt_hand = shuffled_matrix[:, 0:5]
+    rank = shuffle_matrix[:, 0:5] % 13
 
-    print(f"Delat Hands Shape: {dealt_hand.shape}")
+    #print(rank)
+    #print(rank.shape)
 
-    # getting same rank matrix
+    # using np.diff() on suit to find out manual probability
 
-    actual_rank = shuffled_matrix[:, 0:5] % 13
+    diff = np.diff(suit)
 
-    print(f"Same Rank Shape: {actual_rank.shape}")
+    #print(diff)
+    #print(diff.shape)
 
-    # calculating flush mathematically
+    boolean1 = (diff == 0).all(axis = 1)
 
-    math_flush = (4 * math.comb(13, 5)) / math.comb(52, 5)
+    #print(suit[boolean1])
 
-    print(f"Mathematical Flush: {math_flush}")
+    print(f"Manual probability of same suit: {np.mean(boolean1)}")
 
-    # now doing with our suit matrix
+    # using np.sort() to find out manual probability for rank
 
-    diff = np.diff(actual_suit)
+    sort = np.sort(rank)
 
-    # print(diff)
+    #print(sort)
+    #print(sort.shape)
 
-    boolean = (diff == 0).all(axis = 1)
-    
-    # print(boolean.shape)
+    boolean2 = (sort[:, 0] == sort[:, 3]) | (sort[:, 1] == sort[:, 4])
 
-    # print(actual_suit[boolean])
+    #print(rank[boolean2])
 
-    print(f"Manual Probability of Suit: {np.mean(boolean)}")
+    print(f"Manual probability of same rank: {np.mean(boolean2)}")
 
-    # now getting probability of ranks
+    # now calculating mathematical probabilty
 
-    sort = np.sort(actual_rank)
+    same_suit = (4 * math.comb(13, 5)) / math.comb(52, 5)
 
-    difference = (sort[:, 0] == sort[:, 3]) | (sort[:, 1] == sort[:, 4])
+    print(f"Mathematical probability of same suit: {same_suit}")
 
-    print(f"Manual Probability of Rank: {np.mean(difference)}")
+    same_rank = (13 * 48) / math.comb(52, 5)
 
-    # print(actual_rank[difference])
+    print(f"Mathematical probability of same rank: {same_rank}")
 
-    # mathematical rank
+    # Errors
 
-    math_four_of_a_kind = (13 * 48) / math.comb(52, 5)
+    print(f"Error for same suit: {abs(np.mean(boolean1) - same_suit)}")
 
-    print(f"Mathematical Four of a Kind: {math_four_of_a_kind}")
+    print(f"Error for same rank: {np.mean(boolean2) - same_rank}")
 
 if __name__ == "__main__":
     monte_carlo()
