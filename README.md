@@ -17,7 +17,7 @@ $$
 # How Code Works
 - Used `np.broadcast_to()` to stretch the `deck` matrix to 100,000 and created a `grand_matrix`.
 - Shuffled the rows (axis = 1) of `grand_matrix` using `rng.permuted(grand_matrix, axis = 1)`.
-- Now extracted (100000, 5) matrix from the `grand_matrix` and created `shuffled_matrix`.
+- Now suffled 'grand_matrix' and extracted (100000, 5) matrix from the `grand_matrix` and create `shuffled_matrix`.
 - Used `np.diff()` on `actual_suit` to get to know which row's elements are subtracted to 0.
 - Used `np.sort()` on `actual_rank` and did `sort[:, 0] == sort[:, 3]) | (sort[:, 1] == sort[:, 4]` to find out if 1st and 4th and 2nd and 5th element indicating the row has four same rank
 
