@@ -25,6 +25,14 @@ $$
 1. Boolean Masking - `(diff == 0).all(axis = 1)` on `diff` matrix and `(sort[:, 0] == sort[:, 3]) | (sort[:, 1] == sort[:, 4])` on `sort` matrix
 2. `actual_suit` is floor division (`//`) of `shuffled_matrix` and `actual_rank` is modulo (`%`) of `shuffled_matrix`
 
+# Results
+
+| **Poker Hand** | **Theoretical Probability** | **Probability by Code** | **Error** |
+
+| **Flush** | `0.00198` | `0.00219` | `0.00021` |
+
+| **Four of a Kind** | `0.00024` | `0.00023` | `0.00001` |
+
 ## Run It
 ```bash
 python monte_carlo.py
